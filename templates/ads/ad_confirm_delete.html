@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block title %}Удаление объявления - Бартерная система{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-body text-center">
+                <h1 class="card-title mb-4">Удаление объявления</h1>
+                <p class="card-text">
+                    Вы уверены, что хотите удалить объявление "{{ object.title }}"?
+                </p>
+                <form method="post">
+                    {% csrf_token %}
+                    <div class="d-grid gap-2">
+                        <button type="submit" class="btn btn-danger">
+                            <i class="bi bi-trash"></i> Удалить
+                        </button>
+                        <a href="{% url 'ad-detail' object.pk %}" class="btn btn-outline-secondary">
+                            <i class="bi bi-x-lg"></i> Отмена
+                        </a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 

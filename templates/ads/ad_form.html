@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}
+{% if form.instance.pk %}
+Редактирование объявления - Бартерная система
+{% else %}
+Создание объявления - Бартерная система
+{% endif %}
+{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-body">
+                <h1 class="card-title text-center mb-4">
+                    {% if form.instance.pk %}
+                    Редактирование объявления
+                    {% else %}
+                    Создание объявления
+                    {% endif %}
+                </h1>
+                
+                <form method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {{ form|crispy }}
+                    
+                    <div class="d-grid gap-2 mt-4">
+                        <button type="submit" class="btn btn-primary">
+                            {% if form.instance.pk %}
+                            <i class="bi bi-save"></i> Сохранить изменения
+                            {% else %}
+                            <i class="bi bi-plus-lg"></i> Создать объявление
+                            {% endif %}
+                        </button>
+                        <a href="{% url 'ad-list' %}" class="btn btn-outline-secondary">
+                            <i class="bi bi-x-lg"></i> Отмена
+                        </a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 
